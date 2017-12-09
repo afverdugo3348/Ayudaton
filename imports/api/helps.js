@@ -44,7 +44,6 @@ Meteor.methods({
     } 
     Helps.remove(id);
   },
-  
   'tasks.insert'(text) {
     check(text, String);
  
