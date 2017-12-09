@@ -10,8 +10,9 @@ export default class Help extends Component {
    Meteor.call('tasks.setChecked', this.props.task._id, !this.props.task.checked);
   }
  
-  deleteThisTask() {
-   	Meteor.call('tasks.remove', this.props.task._id);
+  deleteThisHelp() {
+  	alert("Va a eliminar");
+   	Meteor.call('helps.remove', this.props.help._id);
   }
   togglePrivate() {
     Meteor.call('tasks.setPrivate', this.props.task._id, ! this.props.task.private);
@@ -37,7 +38,7 @@ export default class Help extends Component {
           onClick={this.toggleChecked.bind(this)}
         />
  	
- 	{ this.props.showPrivateButton ? (
+ 	{ this.props.showCompleteButton ? (
           <button className="toggle-private" onClick={this.togglePrivate.bind(this)}>
             { this.props.task.private ? 'Private' : 'Public' }
           </button>
@@ -53,9 +54,21 @@ export default class Help extends Component {
 render(){
 	return(
 		<li>
-		<span className="text">
-           {this.props.help.text}
-        </span>
+		{this.props.showDeleteButton ? (
+		<button className="delete" onClick={this.deleteThisHelp.bind(this)}>
+        	&times;
+        </button>
+			): ''}
+			<h1>Ayuda a : {this.props.help.username}</h1><br/>
+			<span className="text">
+           		<strong>{this.props.help.tittle} :</strong>
+        	</span><br/>
+        	<span className="text">
+           		{this.props.help.text}
+        	</span><br/>
+        	<span className="text">
+           		<strong>{this.props.help.points} puntos</strong>
+        	</span>
 		</li>
 
 		);

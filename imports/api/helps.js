@@ -35,6 +35,15 @@ Meteor.methods({
       username: Meteor.users.findOne(this.userId).username,
     });
   },
+  'helps.remove'(id) {
+    check(id, String);
+ 
+    // Make sure the user is logged in before inserting a task
+    if (! this.userId) {
+      throw new Meteor.Error('not-authorized');
+    } 
+    Helps.remove(id);
+  },
   'tasks.insert'(text) {
     check(text, String);
  

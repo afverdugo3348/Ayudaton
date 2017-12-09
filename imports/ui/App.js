@@ -57,13 +57,14 @@ class App extends Component {
     }
     return filteredHelps.map((helps) => {
       const currentUserId = this.props.currentUser && this.props.currentUser._id;
-      const showPrivateButton = helps.owner === currentUserId;
- 
+      const showCompleteButton = helps.owner === currentUserId; 
+      const showDeleteButton = helps.owner === currentUserId; 
+
       return (
         <Help
           key={helps._id}
           help={helps}
-          showPrivateButton={showPrivateButton}
+          showDeleteButton={showDeleteButton}
         />
       );
     });
