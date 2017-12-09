@@ -3,20 +3,38 @@ import { check } from 'meteor/check';
 import { Meteor } from 'meteor/meteor';
 
 export const Tasks = new Mongo.Collection('tasks');
+export const Helps = new Mongo.Collection('helps');
 
 if (Meteor.isServer) {
   // This code only runs on the server
-  Meteor.publish('tasks', function tasksPublication() {
-    return Tasks.find({
-      $or: [
-        { private: { $ne: true } },
-        { owner: this.userId },
-      ],
+  Meteor.publish('helps', function tasksPublication() {
+    return Helps.find({
+   //   $or: [
+     //   { private: { $ne: true } },
+       // { owner: this.userId },
+      //],
     });
   });
 }
 
 Meteor.methods({
+	'helps.insert'(tittle, text , points) {
+    check(text, String);
+ 
+    // Make sure the user is logged in before inserting a task
+    if (! this.userId) {
+      throw new Meteor.Error('not-authorized');
+    }
+ 
+    Helps.insert({
+      tittle,
+      text,
+      points,
+      createdAt: new Date(),
+      owner: this.userId,
+      username: Meteor.users.findOne(this.userId).username,
+    });
+  },
   'tasks.insert'(text) {
     check(text, String);
  
