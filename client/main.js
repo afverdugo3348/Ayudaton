@@ -4,7 +4,7 @@ import { render } from 'react-dom';
  
 import App from '../imports/ui/App.js';
 import '../imports/startup/accounts-config.js';
-import '../imports/api/helps.js';
+import '../imports/api/tasks.js';
  
 Meteor.startup(() => {
   render(<App />, document.getElementById('render-target'));
