@@ -7,6 +7,10 @@ import AccountsUIWrapper from './AccountsUIWrapper.js';
  
 import Help from './Helps.js';
  
+//1. No implementaron tests.
+//2. El diseño es muy simple y poco amigable.
+//3. El AyudatonAgent no está bien ubicado. A veces se cruzan con otros elementos y además los colores del Agent desvian la atención y el objetivo principal de la app.
+
 // App component - represents the whole app
 class App extends Component {
 
