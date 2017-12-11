@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
  import classnames from 'classnames';
 import { Helps } from '../api/helps.js';
@@ -7,12 +8,17 @@ export default class Help extends Component {
 
  toggleChecked() {
     // Set the checked property to the opposite of its current value
-   Meteor.call('tasks.setChecked', this.props.task._id, !this.props.task.checked);
+   Meteor.call('helps.setChecked', this.props.help._id, !this.props.help.checked);
   }
  
   deleteThisHelp() {
-  	alert("Va a eliminar");
    	Meteor.call('helps.remove', this.props.help._id);
+  }
+  doThisHelp() {
+    ReactDOM.findDOMNode(this.refs.contactHelp).style = 'visibility : "visible"';
+  }
+  hiddenHelp() {
+    ReactDOM.findDOMNode(this.refs.contactHelp).style = 'visibility: hidden';
   }
   togglePrivate() {
     Meteor.call('tasks.setPrivate', this.props.task._id, ! this.props.task.private);
@@ -59,6 +65,19 @@ render(){
         	&times;
         </button>
 			): ''}
+        { this.props.showCompleteButton ? (
+          <input
+          type="checkbox"
+          readOnly
+          checked={!!this.props.help.checked}
+          onClick={this.toggleChecked.bind(this)}
+        />
+        ) : ''}
+        { this.props.showHelpButton ? (
+         <button className="delete" onClick={this.doThisHelp.bind(this)}>
+          Ayudar
+        </button>
+        ) : ''}
 			<h1>Ayuda a : {this.props.help.username}</h1><br/>
 			<span className="text">
            		<strong>{this.props.help.tittle} :</strong>
@@ -69,6 +88,11 @@ render(){
         	<span className="text">
            		<strong>{this.props.help.points} puntos</strong>
         	</span>
+
+          <div ref="contactHelp" className="contact-help" style={{visibility:"hidden"}}>
+            <h3>Escrible un correo a {this.props.help.username} al siguiente correo: {this.props.help.username}@uniandes.edu.co</h3>
+            <button onClick={this.hiddenHelp.bind(this)}>Anotado!</button>
+          </div>
 		</li>
 
 		);

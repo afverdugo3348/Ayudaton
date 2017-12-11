@@ -2,19 +2,24 @@ import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 import { Meteor } from 'meteor/meteor';
 
-export const Tasks = new Mongo.Collection('tasks');
 export const Helps = new Mongo.Collection('helps');
 
 if (Meteor.isServer) {
   // This code only runs on the server
-  Meteor.publish('helps', function tasksPublication() {
-    return Helps.find({
-   //   $or: [
-     //   { private: { $ne: true } },
-       // { owner: this.userId },
-      //],
+  Meteor.publish('helpsUser', function tasksPublication() {
+    return Helps.find({});
+  });
+Meteor.publish('helps', function helpsPublication() {
+    return Helps.find({});
+  });
+Meteor.publish('usersData', function usersPublication() {
+   return Users.find({
+      $or: [
+        { owner: this.userId },
+     ],
     });
   });
+
 }
 
 Meteor.methods({
@@ -25,8 +30,9 @@ Meteor.methods({
     if (! this.userId) {
       throw new Meteor.Error('not-authorized');
     }
- 
+    let user ="user";
     Helps.insert({
+      type: user,
       tittle,
       text,
       points,
@@ -43,6 +49,39 @@ Meteor.methods({
       throw new Meteor.Error('not-authorized');
     } 
     Helps.remove(id);
+  },
+  'helps.setChecked'(helpId, setChecked) {
+    check(helpId, String);
+    check(setChecked, Boolean);
+ 
+    Helps.update(helpId, { $set: { checked: setChecked } });
+  },
+  'helps.insertPoints'(points) {
+     if (! this.userId) {
+      throw new Meteor.Error('not-authorized');
+    }
+    let user ="data";
+    Helps.insert({
+      type: user,
+      points,
+      owner: this.userId,
+      username: Meteor.users.findOne(this.userId).username,
+      rate: 5,
+    });
+  },
+   'helps.setPoints'(setPoints) {
+  
+    console.log(setPoints);
+    console.log(this.userId);
+    Helps.update({owner : this.userId, type: 'data'}, { $set: { points: setPoints } });
+  },
+  'helps.setPointsRate'(helper, rate, setPoints){
+      let p = parseInt(Helps.findOne({username: helper , type: 'data'}).points);
+      let r =  parseInt(Helps.findOne({username: helper , type: 'data'}).rate);
+      console.log(helper);
+      console.log(p);
+      console.log(r);
+      Helps.update({username: helper},{$set:{points:(parseInt(setPoints)+p), rate: (r+parseInt(rate))/2}});
   },
   'tasks.insert'(text) {
     check(text, String);

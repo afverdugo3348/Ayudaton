@@ -123,4 +123,9 @@ header .hide-completed {
   .new-task input {
     padding-bottom: 5px;
   }
+
+ #contact-help{
+    visibility: hidden;
+    background: #000;
+  }
 }
