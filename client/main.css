@@ -1,64 +1,81 @@
 /* CSS declarations go here */
 body {
-  font-family: sans-serif;
-  background-color: #315481;
-  background-image: linear-gradient(to bottom, #315481, #918e82 100%);
-  background-attachment: fixed;
- 
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
- 
-  padding: 0;
-  margin: 0;
- 
-  font-size: 14px;
+    font-family: sans-serif;
+    background-attachment: fixed;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    height: 100%;
 }
  
 .container {
-  max-width: 600px;
-  margin: 0 auto;
-  min-height: 100%;
-  background: white;
+ margin: 0 auto;
+    height: 100%;
+    min-height: 100%;
+    background: white;
+    position: absolute;
+    width: 100%;
 }
  
 header {
-  background: #d2edf4;
-  background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
-  padding: 20px 15px 15px 15px;
-  position: relative;
+     background: #d2edf4;
+    background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
+    padding: 20px 15px 15px 15px;
 }
  
 #login-buttons {
-  display: block;
+ display: block;
+    font-size: 2em;
+    position: absolute;
+    color: white;
+    background: grey;
+    width: 20%;
+    left: 65%;
+    text-align: center;
+    top: 35%;
+    height: 10%;
+    line-height: 2;
 }
  
 h1 {
-  font-size: 1.5em;
-  margin: 0;
-  margin-bottom: 10px;
-  display: inline-block;
-  margin-right: 1em;
+ display: block;
+    float: right;
+    position: absolute;
+    right: 10%;
+    top: 61px;
+    font-size: 1.5em;
+    margin: 0;
+    margin-bottom: 10px;
+    margin-right: 1em;
 }
  
 form {
-  margin-top: 10px;
-  margin-bottom: -10px;
-  position: relative;
 }
  
-.new-task input {
-  box-sizing: border-box;
-  padding: 10px 0;
-  background: transparent;
-  border: none;
-  width: 100%;
-  padding-right: 80px;
-  font-size: 1em;
+.new-task {
+    position: absolute;
+    width: 45%;
+    height: 45%;
+    left: 55%;
+    top: 57%;
+    background: lightblue;
+    border: solid 1px;
 }
- 
+.new-help-calification{
+
+    position: absolute;
+    width: 50%;
+    height: 45%;
+    top: 55%;
+    border: solid 1px;
+    margin: 10px;
+    background: lightblue;
+ }
 .new-task input:focus{
   outline: 0;
 }
@@ -66,7 +83,12 @@ form {
 ul {
   margin: 0;
   padding: 0;
-  background: white;
+  position: absolute;
+    top: 110%;
+    width: 60%;
+    background: lightblue;
+    left: 20%;
+    border: solid 1px;
 }
  
 .delete {
@@ -103,13 +125,107 @@ li.private {
 }
  
 header .hide-completed {
-  float: right;
-}
+      float: right;
+    display: block;
+    top: 95px;
+    position: absolute;
+    right: 10%;}
  
 .toggle-private {
   margin-left: 5px;
 }
  
+ #contact-help{
+    visibility: hidden;
+    background: #000;
+  }
+
+  #tittleUser{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    left: 0%;
+    top: 5%
+  } 
+
+  #rate{
+    position: absolute;
+    left: 0%;
+    width: 100%;
+    text-align: center;
+    top: 20%;
+  }
+  #points{
+        position: absolute;
+    width: 100%;
+    top: 45%;
+    left: 0%;
+    text-align: center;
+  }
+  #userHelper{width: 40%;
+    position: absolute;
+    left: 30%;
+    top: 10%;}
+    #rateHelper{width: 40%;
+    position: absolute;
+    left: 30%;
+    top: 30%;}
+    #pointsHelper{width: 40%;
+    position: absolute;
+    left: 30%;
+    top: 50%;}
+     #buttonHelper{width: 40%;
+    position: absolute;
+    left: 30%;
+    top: 70%;}
+
+    #newHelp{
+      width: 40%;
+      position: absolute;
+      left: 30%;
+      top: 10%
+    }
+    #newHelpTittle{
+      width: 40%;
+      position: absolute;
+      left: 30%;
+      top: -5%
+    }
+    #newHelperTittle{
+      width: 40%;
+      position: absolute;
+      left: 30%;
+      top: -5%
+    }
+    #newDescription{width: 40%;
+    position: absolute;
+    left: 30%;
+    top: 30%;}
+
+    #newPoints{
+      width: 40%;
+    position: absolute;
+    left: 30%;
+    top: 50%;
+    }#newButton{
+      width: 40%;
+    position: absolute;
+    left: 30%;
+    top: 70%;
+    }#hideButton{
+            position: absolute;
+    top: 20%;
+    left: 68%;
+      }#tittlePend{
+            position: absolute;
+            top: 10%;
+            left: 68%;
+      }
+      #chat{
+        position: fixed;
+        bottom: 0px;
+        right: 0px;
+      }
 @media (max-width: 600px) {
   li {
     padding: 12px 15px;
@@ -124,8 +240,5 @@ header .hide-completed {
     padding-bottom: 5px;
   }
 
- #contact-help{
-    visibility: hidden;
-    background: #000;
-  }
+
 }

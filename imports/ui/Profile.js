@@ -9,10 +9,11 @@ export default class Profile extends Component {
  }
  render(){
 	return(
-		<div>
-      <h1>{this.props.username}</h1>
-      <h3>Tienes una calificación de {this.props.rate}</h3>
-      <h3>Tienes {this.props.points} puntos</h3>
+
+		<div style={{"border": "solid 1px", "margin": "10px", "position": "absolute", "width": "50%",  "height": "45%"}}>
+      <h1 id="tittleUser">{this.props.username}</h1>
+      <h3 id="rate">Tienes una calificación de {this.props.rate}</h3>
+      <h3 id="points">Tienes {this.props.points} puntos</h3>
     </div>
 		);
 	}

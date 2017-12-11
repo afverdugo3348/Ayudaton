@@ -93,22 +93,26 @@ class App extends Component {
 
   renderRegistrarAyuda(){
      return(<form className="new-help-calification">
+             <h3 id="newHelperTittle">Paga la ayuda recibida!</h3>
               <input
                 type="text"
                 ref="username"
                 placeholder="Escribe el username del usuario que te ayudo"
+                id = "userHelper"
               />
               <input
                 type="textArea"
                 ref="textRate"
                 placeholder="Escribe una calificación para el usuario"
+                id = "rateHelper"
               />
               <input
                 type="text"
                 ref="pointsGive"
                 placeholder="Cuanto puntos le das?"
+                id = "pointsHelper"
               />
-              <button onClick= {this.handleSubmitHelper.bind(this)}>
+              <button id = "buttonHelper" onClick= {this.handleSubmitHelper.bind(this)}>
                 Enviar
               </button>
 
@@ -170,8 +174,8 @@ class App extends Component {
         <header>
         {this.renderProfile()}
         {this.renderRegistrarAyuda()}
-          <h1>Ayudas Pendientes({this.props.incompleteCount})</h1>
-          <label className="hide-completed">
+          <h1 id="tittlePend">Ayudas Pendientes({this.props.incompleteCount})</h1>
+          <label id="hideButton" className="hide-completed">
             <input
               type="checkbox"
               readOnly
@@ -182,40 +186,55 @@ class App extends Component {
           </label>
           <AccountsUIWrapper />
             <form className="new-task">
+
               <input
                 type="text"
                 ref="tittleInput"
                 placeholder="Escribe el titulo de una nueva ayuda"
+                id="newHelp"
               />
               <input
                 type="textArea"
                 ref="textInput"
                 placeholder="Escribe en que consiste"
+                id="newDescription"
               />
               <input
                 type="text"
                 ref="pointsInput"
                 placeholder="Cuanto puntos das?"
+                id="newPoints"
               />
-              <button onClick= {this.handleSubmit.bind(this)}>
+              <button id="newButton" onClick= {this.handleSubmit.bind(this)}>
                 Enviar
               </button>
 
             </form> : ''
           }
         </header>
- 
+  
         <ul>
           {this.renderHelps()}
         </ul>
-      </div>);
+        <iframe id="chat"
+               width="250"
+               height="300"
+                src="https://console.dialogflow.com/api-client/demo/embedded/a006c06f-917e-402e-8f7b-581c13590f77">
+          </iframe>
+      </div>
+       );
     }
     else{
       return(<div>
-          <h1>Ayudaton</h1>
-          <h3>Ayudaton es una comunidad en la que ayudas a los dem&aacute;s  y ser&aacute;s ayudado. Hoy por mi, ma&ntilde;ana por ti!</h3>     
-          <img src="./perfil.PNG" alt="Imagen ayudaton"/>
+          <h1 style={{"fontSize": "5em" , "fontFamily": "Arial" , "textAlign": "center", "width": "100%", "left": "0px"}}>Ayudaton</h1>
+         <h3 style={{ "fontFamily": "Arial" , "textAlign": "center", "width": "100%", "zIndex": "1","position": "absolute","top":"25%"}}>Ayudaton es una comunidad en la que ayudas a los demás  y serás ayudado. Hoy por mi, mañana por ti!</h3>
+         <img src="https://raw.githubusercontent.com/afverdugo3348/Ayudaton/master/client/perfil.PNG" alt="Imagen ayudaton" style={{"width": "50%", "left":"10%","top": "30%","position": "absolute"}}/>
           <AccountsUIWrapper />
+          <iframe id="chat"
+               width="250"
+               height="300"
+                src="https://console.dialogflow.com/api-client/demo/embedded/a006c06f-917e-402e-8f7b-581c13590f77">
+          </iframe>
       </div>);         
      }
   }
