@@ -186,7 +186,7 @@ class App extends Component {
           </label>
           <AccountsUIWrapper />
             <form className="new-task">
-
+              <h3 id="newHelpTittle">Pide una ayudita!</h3>
               <input
                 type="text"
                 ref="tittleInput"
